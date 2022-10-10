@@ -15,19 +15,19 @@
 </head>
 <body>
 <h1>Treasure hunt PYDI VENKATA SATYA RAMESH ADAPA</h1>
-<p>Click on the chests to search for treasure.</p>
-<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-  <div class="p-3 border bg-light" id="chests">Number of chests checked is zero.</div><br>
-  <div class="p-3 border bg-light" id="score">Score is unknown.</div><br>
-  <div class="p-3 border bg-light" id="help">Help report.</div><br>
+<div class="container-lg"><h3>Click on the chests to search for treasure.</h3></div>
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 text-center">
+  <div class="p-3 border bg-info bg-gradient border-dark border-3" id="chests">Number of chests checked is zero.</div><br>
+  <div class="p-3 border bg-success bg-gradient border-dark border-3" id="score">Score is unknown.</div><br>
+  <div class="p-3 border bg-warning bg-gradient border-dark border-3" id="help">Help report.</div><br>
 </div>
-<div class="container-fluid">
+<div class="container-sm">
 <div class="row ">
-    <div class="col-sm-2" ><img id="t1" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(0)"></div>
-    <div class="col-sm-2" ><img id="t2" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(1)"></div>
-    <div class="col-sm-2" ><img id="t3" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(2)"></div>
-    <div class="col-sm-2" ><img id="t4" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(3)"></div>
-    <div class="col-sm-2" ><img id="t5" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(4)"></div>
+    <div class="col-sm-2 ml-auto" ><img id="t1" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(0)"></div>
+    <div class="col-sm-2 ml-auto" ><img id="t2" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(1)"></div>
+    <div class="col-sm-2 ml-auto" ><img id="t3" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(2)"></div>
+    <div class="col-sm-2 ml-auto" ><img id="t4" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(3)"></div>
+    <div class="col-sm-2 ml-auto" ><img id="t5" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(4)"></div>
 </div><br>
 <div class="row">
     <div class="col-sm-2" ><img id="t6" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(5)"></div>
@@ -59,34 +59,57 @@
 </div><br>
 </div>
 <script>
-  const chestId={t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25};
+  var chestId=['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12','t13','t14','t15','t16','t17','t18','t19','t20','t21','t22','t23','t24','t25'];
   let chestCount=0;
   let score=0;
   let lastCheck=12;
   let treasureLocation=18;
-  function check(position){
-        let imageId=chestCount[position];
+  function check(position) {
+        var imageId=chestId[position];
         if(position==treasureLocation){
           document.getElementById(imageId).src="treasure.jpg";
-          chestCount+=1;
-          score+=1;
+          
         }
         else{
-          document.getElementById(imageId).src="Sad Skull.jpg";
+          document.getElementById(imageId).src="SadSkull.jpg";
         }
+        chestCount+=1;
+        score+=1;
        document.getElementById("chests").innerHTML="Number of chests checked is "+chestCount;
        document.getElementById("score").innerHTML="Score is "+score;
        lastCheck=position;
   }
   function help(){
       let coll=lastCheck%5;
-      let rowl=lastCheck/5;
+      let rowl=Math.floor(lastCheck/5);
       let colt=treasureLocation%5;
-      let rowt=treasureLocation/5;
+      let rowt=Math.floor(treasureLocation/5);
       score+=2;
       document.getElementById("score").innerHTML="Score is "+score;
       if(rowt==rowl){
-        
+        if(coll<colt){
+          document.getElementById("help").innerHTML="right";
+        }
+        else if(coll>colt){
+          document.getElementById("help").innerHTML="left";
+        }
+        else{
+          document.getElementById("help").innerHTML="Sorry, no help available - already Won the game";
+        }
+      }
+      else if(colt==coll){
+        if(rowl<rowt){
+          document.getElementById("help").innerHTML="down";
+        }
+        else if(rowl>rowt){
+          document.getElementById("help").innerHTML="up";
+        }
+        else{
+          document.getElementById("help").innerHTML="Sorry, no help available - already Won the game";
+        }
+      }
+      else{
+        document.getElementById("help").innerHTML="Sorry, no help available"; 
       }
 
   }
