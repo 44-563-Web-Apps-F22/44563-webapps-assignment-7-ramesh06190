@@ -68,17 +68,14 @@
         var imageId=chestId[position];
         if(position==treasureLocation){
           document.getElementById(imageId).src="treasure.jpg";
-          
         }
         else{
-          document.getElementById(imageId).src="SadSkull.jpg";
-        }
+          document.getElementById(imageId).src="SadSkull.jpg";}
         chestCount+=1;
         score+=1;
        document.getElementById("chests").innerHTML="Number of chests checked is "+chestCount;
        document.getElementById("score").innerHTML="Score is "+score;
-       lastCheck=position;
-  }
+       lastCheck=position;}
   function help(){
       let coll=lastCheck%5;
       let rowl=Math.floor(lastCheck/5);
