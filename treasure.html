@@ -21,6 +21,8 @@
   <div class="p-3 border bg-success bg-gradient border-dark border-3" id="score">Score is unknown.</div><br>
   <div class="p-3 border bg-warning bg-gradient border-dark border-3" id="help">Help report.</div><br>
 </div>
+<div class="col-sm-3 ml-auto">
+<button type="button" class="btn-primary" id="newgame" onclick="newGame()">New Game</button></div>
 <div class="container-sm">
 <div class="row ">
     <div class="col-sm-2 ml-auto" ><img id="t1" src="Tchest.jpg" alt="Treasure Chest" width="100px" height="100px" onclick="check(0)"></div>
@@ -64,6 +66,7 @@
   let score=0;
   let lastCheck=12;
   let treasureLocation=18;
+  
   function check(position) {
         var imageId=chestId[position];
         if(position==treasureLocation){
@@ -108,6 +111,25 @@
       else{
         document.getElementById("help").innerHTML="Sorry, no help available"; 
       }
+  }
+  function newGame(){
+    
+    chestCount=0;
+    score=0;
+    treasureLocation=Math.round(Math.random() * 24)
+    if(treasureLocation==12){
+      treasureLocation+=Math.round(Math.random() * 5)
+    }
+    document.getElementById("chests").innerHTML="Number of chests checked is "+chestCount;
+    document.getElementById("score").innerHTML="Score is "+score;
+    document.getElementById("help").innerHTML="Help Report.";
+    for(var i=0;i<=24;i++){
+      if(i!= 12){
+        document.getElementById(chestId[i]).src="TChest.jpg";
+      }
+    }
+
+
 
   }
 </script>

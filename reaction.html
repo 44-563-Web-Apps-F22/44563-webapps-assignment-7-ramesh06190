@@ -15,19 +15,24 @@
   <div id="countdown">COUNT</div>
   <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
   <button type="button" class="btn btn-secondary" onclick="recordReact()">React Now</button>
-  
+  <button type="button" class="btn btn-secondary" onclick="randomTimer()">Reset to Random Timer</button>
   <script>
   var myTime=undefined 
+  var startpoint=3
   function recordReact(){
     myTime=Date.now()
     dt=new Date(myTime)
     console.log(dt)
   }
+  function randomTimer(){
+    startpoint=Math.floor(Math.random() * 8)+2
+    startTime()
+  }
   function startTime(){
-    for(let i=0;i<=3;i++){
+    for(let i=0;i<=startpoint;i++){
       setTimeout(() => {
         document.getElementById("countdown").innerHTML="Count: " + i
-      },(3-i)*1000)
+      },(startpoint-i)*1000)
     }
     setTimeout(() => {
       if(myTime==undefined){
@@ -37,7 +42,7 @@
         var buttonTime=Date.now()
         document.getElementById("target").innerHTML="Time was"+(buttonTime-myTime)
       }
-    },3000)
+    },startpoint*1000)
     myTime=undefined
   }
   </script>
