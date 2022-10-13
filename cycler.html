@@ -23,7 +23,8 @@
 <body>
 	<h1>PYDI VENKATA SATYA RAMESH ADAPA builds a cycler</h1>
 	<input id="userinput" type="text">
-	<div class="flex-container" id="target">
+	<br>	
+	<div class="flex-container"  id="target">
 		  <div class="cycler">row item 1</div>   
 		  <div class="cycler">row item 2</div>  
 		  <div class="cycler">row item 3</div>  
@@ -36,7 +37,7 @@
 	function makeNewDiv(){
 		/* make the div and its text */
 		let element = document.createElement("div")
-		element.style.color = 'orange'
+		element.style.color = 'green'
 		element.className='cycler'
 		var inputval=document.getElementById('userinput').value
 		element.innerHTML = inputval
@@ -56,7 +57,7 @@
 		var len=cyclerItems.length
 		if(len>1){			
 			removedItem= document.createElement("div")
-			removedItem.style.color = 'orange'
+			removedItem.style.color = 'green'
 			removedItem.className='cycler'
 			removedItem.innerHTML=cyclerItems[len-1].textContent
 			cyclerItems[len-1].remove()
