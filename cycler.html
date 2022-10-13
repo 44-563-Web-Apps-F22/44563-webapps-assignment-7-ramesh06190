@@ -76,26 +76,20 @@
 		if(Swap1==Swap2){
 			Swap2+=1
 		}
-		
 		else{
 			item1= document.createElement("div")
 			item1.style.color = 'red'
 			item1.className='cycler'
 			item1.innerHTML=cyclerItems[Swap2].textContent
-
 			item2= document.createElement("div")
 			item2.style.color = 'red'
 			item2.className='cycler'
 			item2.innerHTML=cyclerItems[Swap1].textContent
-
 			cyclerItems[Swap1].remove()
 			document.getElementById("target").insertBefore(item1,cyclerItems[Swap2-1])
-
 			cyclerItems[Swap2].remove()
 			document.getElementById("target").insertBefore(item2,cyclerItems[Swap1])
-
 		}
-		
 	}
 </script>
 </body>
